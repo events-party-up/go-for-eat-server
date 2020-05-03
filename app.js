@@ -60,8 +60,8 @@ routes(app);
 app.use(compress());
 
 // Raven
-app.on('error', function (err) {
-  Raven.captureException(err, function (err, eventId) {
+app.on('error', async err => {
+  await Raven.captureException(err, (err, eventId) => {
     //eslint-disable-next-line no-console
     console.log(`Reported error ${eventId}`);
   });
